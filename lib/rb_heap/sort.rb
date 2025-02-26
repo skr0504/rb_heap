@@ -3,10 +3,6 @@ class Heap
     compare_fn = self.invertComparison(order, &compare_fn)
     heap = Heap.new(order, array, &compare_fn)
 
-    array.each do |element|
-      heap.add(element)
-    end
-
     (0...array.size).reverse_each do |i|
       array[i] = heap.pop
     end

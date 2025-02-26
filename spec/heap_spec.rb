@@ -57,6 +57,20 @@ describe Heap do
       expect(a.pop).to eq(3)
       expect(a.pop).to eq(-5)
     end
+
+    it "can create a heap from a given array" do
+      a = Heap.new(:<, [2,1,3])
+      expect(a.pop).to eq(1)
+      expect(a.pop).to eq(2)
+      expect(a.pop).to eq(3)
+    end
+
+    it "can create a heap from an Object with a to_a method" do
+      a = Heap.new(:<, [2,1,3].to_enum)
+      expect(a.pop).to eq(1)
+      expect(a.pop).to eq(2)
+      expect(a.pop).to eq(3)
+    end
   end
 
   describe :size do

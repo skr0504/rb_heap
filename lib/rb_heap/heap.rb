@@ -1,8 +1,9 @@
 class Heap
   def initialize(compare_symbol = :<, storage = [], &compare_fn)
-    @heap = storage
-    @size = 0
+    @heap = storage.to_a
+    @size = @heap.length
     initialize_compare(compare_symbol, &compare_fn)
+    heapify
   end
 
   attr_reader :size
@@ -75,6 +76,15 @@ class Heap
       lambda{|a, b| a > b}
     else
       raise ArgumentError.new("The comparison symbol needs to be either :> or :<")
+    end
+  end
+
+  def heapify
+    #
+    # uses Floyd's heap construction ( O(n) efficiency) )
+    #
+    (@size/2-1).downto(0).each do |n| # all internal nodes
+      rebalance_down(n)
     end
   end
 
